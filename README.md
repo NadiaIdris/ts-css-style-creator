@@ -10,58 +10,43 @@
 
 ---
 
-## Exercise 1: word counter
+## Exercise 1: make css style class
 
-Make a function called `countWords(textToParse: string): Map<string, number>` which takes one argument (string to search). Function returns a map of words and their count.
-
-## Example
-
-```ts
-countWords("Hello world"); // Map { 'Hello' => 1, 'world' => 1 }
-countWords("Hello world world"); // Map { 'Hello' => 1, 'world' => 2 }
-```
-
-## Solution
-
-See [countWords.ts](/src/countWords.ts) file.
-
-# Exercise 2: range maker
-
-Make a function called `makeRanges(numbers: number[]): string[]` which take one argument (array of numbers). Function returns an array of strings.
-
-Note: Each number is unique and in acending order.
+Write a CSS style maker. 
+Implement a class with methods: `addProperty(key: string, value: string): this`
 
 ## Example
 
 ```ts
-makeRanges([0, 1, 2, 5, 7]); // ['0-2', '5', '7']
-makeRanges([0, 1, 2, 5, 7, 8, 9]); // ['0-2', '5', '7-9']
-makeRanges([]); // [""]
+const style1 = new Style({
+  color: "red",
+  fontSize: "12px",
+  fontWeight: "bold",
+  backgroundColor: "blue",
+  padding: "10px",
+  borderRadius: "5px",
+});
+
+console.log(style1.formattedString());
+/* toString method will return this:
+"{
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: blue;
+  padding: 10px;
+  border-radius: 5px;
+}"
+*/
+
+const style2 = new Style({
+  fontFamily: "Arial",
+  borderRadius: "20px",
+  color: "green",
+});
+
+// style2 overrides style1 properties. style3 is a new instance of Style class.
+const style3 = style1.addStyle(style2)
 ```
 
-# Exercise 3: pattern counter
 
-Write a function called `countPatterns(pattern: string, text: string): number` which takes two arguments (pattern and text to search). Function returns a number of times pattern is found in text.
-
-Note: Pattern can be a single word or a phrase and can contain spaces. Must be exact match.
-
-## Example
-
-```ts
-countPatterns("ababab", "ab"); // 3
-countPatterns("bark dog dogma", "dog"); // 2
-```
-
-# Exercise 4: syntax highlighter
-
-Write a function called `highlightSyntax(content: string): StyledContent[]` which takes one argument (content to find "cat" and "dog" words in it and make them bold). Function returns an array of tuples (type StyledContent). Each tuple's first item is the word and the second item is the style of the word.
-
-"cat" and "dog" will be always printed bold by syntaxHighlighter function no matter what the content passed to it. 
-
-## Example
-
-```ts
-highlightSyntax("the cat jumped over the old dog"); // [['the', 'none'], ['cat', 'bold'], ['jumped', 'none'], ['over', 'none'], ['the', 'none'], ['old', 'none'], ['dog', 'bold']]
-highlightSyntax("cat cat one two"); // [['cat', 'bold'], ['cat', 'bold'], ['one', 'none'], ['two', 'none']]
-highlightSyntax(""); // []
-```
