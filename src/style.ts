@@ -1,6 +1,4 @@
 import _ = require("lodash");
-import { StyleInterface } from "./external";
-
 // Each style property is a string, but the value is a string, number, or object
 const propertyNames: { [key: string]: string } = {
   color: "color",
@@ -25,6 +23,14 @@ Map{
   }
 }
 */
+
+export interface StyleInterface {
+  /** Adds a property name and value to the existing style instance. */
+  addProperty: (key: string, value: string) => Style;
+  addStyle: (style: Style) => Style;
+  formattedString(): string;
+}
+
 
 interface StyleProperties {
   name: string;

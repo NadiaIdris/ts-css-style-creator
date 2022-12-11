@@ -1,4 +1,4 @@
-import Style from "../internal";
+import Style from "../style";
 
 test("toString works", () => {
   const style = new Style({
