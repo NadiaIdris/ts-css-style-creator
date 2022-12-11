@@ -1,4 +1,4 @@
-# Execises written in TypeScript
+# CSS style creator in TypeScript
 
 ## Install project dependencies
 
@@ -12,8 +12,11 @@
 
 ## Exercise 1: make css style class
 
-Write a CSS style maker. 
-Implement a class with methods: `addProperty(key: string, value: string): this`
+Write a CSS style maker.
+Implement a Style class with methods:
+
+- `addProperty(key: string, value: string): Style` <- Adds a property to the exisiting Style
+- `addStyle(style: Style): Style` <- Combines new style with the current style and returns new Style instance.
 
 ## Example
 
@@ -46,7 +49,5 @@ const style2 = new Style({
 });
 
 // style2 overrides style1 properties. style3 is a new instance of Style class.
-const style3 = style1.addStyle(style2)
+const style3 = style1.addStyle(style2);
 ```
-
-

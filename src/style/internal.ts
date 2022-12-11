@@ -13,7 +13,7 @@ const propertyNames: { [key: string]: string } = {
 };
 
 /* 
-This is how we want styles Map to look like.
+Data structure: This is how we want styles Map to look like.
 Map{
   backgroundColor: {
     name: "background-color",
