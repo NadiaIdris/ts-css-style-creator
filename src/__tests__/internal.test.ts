@@ -32,12 +32,15 @@ test("addStyle works", () => {
     backgroundColor: "red",
     margin: "400px",
   });
+
   const style2 = new Style({
     padding: "10px",
     margin: "10px",
     borderRadius: "10px",
   });
+
   const style3 = style1.addStyle(style2);
+  
   const expected =
     "{\n" +
     `  border-radius: 10px;` +
