@@ -31,16 +31,29 @@ export interface StyleInterface {
   formattedString(): string;
 }
 
-type AllJSProperties = "color" | "backgroundColor" | "fontSize" | "fontWeight" | "padding" | "margin" | "borderRadius ";
-type AllCSSProperties = "color" | "background-color" | "font-size" | "font-weight" | "padding" | "margin" | "border-radius";
+type AllJSProperties =
+  | "color"
+  | "backgroundColor"
+  | "fontSize"
+  | "fontWeight"
+  | "padding"
+  | "margin"
+  | "borderRadius ";
+type AllCSSProperties =
+  | "color"
+  | "background-color"
+  | "font-size"
+  | "font-weight"
+  | "padding"
+  | "margin"
+  | "border-radius";
 
 interface StyleProperties {
   name: AllCSSProperties;
   value: string;
 }
 
-type StylesArray = [ AllJSProperties, StyleProperties ]
-
+type StylesArray = [AllJSProperties, StyleProperties];
 
 export default class Style implements StyleInterface {
   styles: Map<string, StyleProperties> = new Map();
@@ -55,7 +68,10 @@ export default class Style implements StyleInterface {
   }
 
   addProperty = (key: string, value: string): Style => {
-    this.styles.set(key, { name: propertyNames[key] as AllCSSProperties, value: value });
+    this.styles.set(key, {
+      name: propertyNames[key] as AllCSSProperties,
+      value: value,
+    });
     return this;
   };
 
@@ -73,16 +89,15 @@ export default class Style implements StyleInterface {
 
   clone = (): Style => {
     // Break binding to `this` (of this instance of Style).
-    const temp: StylesArray[] = JSON.parse(JSON.stringify([...this.styles])); // Returns an array of arrays.
+    const temp: StylesArray[] = JSON.parse(JSON.stringify([...this.styles])); // Returns an array of arrays. [['padding', {name: 'padding', value: '10px'}}], [...], ...]
     console.log(temp);
-    // Convert the array of arrays to an object which we can pass to the Style constructor.
-    const styleObj = {};
-    // TODO: Fix this.
-    temp.forEach(style => { 
-      const key = style[ 0 ] as AllJSProperties;
-      const value = style[ 1 ];
+    // Convert the array of arrays to an object which we can pass to the Style constructor => {backgroundColor: "red", fontSize: "12px"}
+    const styleObj: Partial<Record<AllJSProperties, string>> = {};
+    temp.forEach((style) => {
+      const key = style[0];
+      const value = style[1];
       styleObj[key] = value.value;
-    })
+    });
     return new Style(styleObj);
   };
 
